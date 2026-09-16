@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caractériser les produits – Bac pro MCV</title>
+<style>
+/* ── RESET & BASE ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:        #f4f5f9;
+  --surface:   #ffffff;
+  --card:      #ffffff;
+  --border:    #dde1ea;
+  --border-hi: #c3c9d9;
+  --text:      #232735;
+  --text-dim:  #6b7086;
+  --accent:    #b8790a;
+  --green:     #1f9d52;
+  --red:       #c9403f;
+  --blue:      #2f7dc9;
+  --purple:    #7c4dbd;
+  --font-head: 'Syne', sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --radius:    10px;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.site-header {
+  background: linear-gradient(135deg, #ffffff 0%, #eef1f8 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 48px 24px 36px;
+  text-align: center;
+}
+.site-header .kicker {
+  display: inline-block;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 3px;
+  margin-bottom: 18px;
+}
+.site-header h1 {
+  font-family: var(--font-head);
+  font-size: clamp(22px, 5vw, 38px);
+  font-weight: 800;
+  color: #12141c;
+  margin-bottom: 8px;
+  line-height: 1.15;
+}
+.site-header .sub {
+  color: var(--text-dim);
+  font-size: 14px;
+  font-weight: 300;
+  max-width: 520px;
+  margin: 0 auto 24px;
+}
+
+/* ── NAV ANCRES ──────────────────────────────────────────── */
+.nav-anchors {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.nav-anchors a {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 7px 16px;
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+}
+.nav-anchors a:hover { border-color: var(--accent); color: var(--accent); }
+
+/* ── CONTENEUR PRINCIPAL ─────────────────────────────────── */
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px 80px;
+}
+
+/* ── TITRE DE BLOC ───────────────────────────────────────── */
+.bloc-titre {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 52px 0 6px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
+}
+.bloc-titre:first-child { margin-top: 0; }
+.bloc-titre .icone {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.bloc-titre h2 {
+  font-family: var(--font-head);
+  font-size: 20px;
+  font-weight: 800;
+  color: #12141c;
+}
+
+/* ── MÉMO FORMULE ────────────────────────────────────────── */
+.memo {
+  background: #eafbf0;
+  border: 1px solid #bfe8cc;
+  border-left: 4px solid var(--green);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  line-height: 1.75;
+}
+.memo .memo-titre {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+.memo code {
+  display: block;
+  background: #dcf4e3;
+  border-radius: 5px;
+  padding: 8px 14px;
+  color: #146c34;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  margin: 4px 0;
+}
+.memo .note {
+  color: var(--text-dim);
+  font-size: 12.5px;
+  margin-top: 6px;
+}
+
+/* ── CARTE EXERCICE ──────────────────────────────────────── */
+.exo-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  overflow: hidden;
+  transition: border-color .15s;
+  box-shadow: 0 1px 2px rgba(20, 24, 40, .04);
+}
+.exo-card:hover { border-color: var(--border-hi); }
+
+.exo-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
+}
+.exo-header::-webkit-details-marker { display: none; }
+
+.exo-num {
+  font-family: var(--font-head);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  min-width: 40px;
+}
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 9px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.badge-1 { background: #e3f8ea; color: #167a41; border: 1px solid #b9e6c8; }
+.badge-2 { background: #fdf1dc; color: #8a5f00; border: 1px solid #f0d99e; }
+.badge-3 { background: #fbe7e6; color: var(--red); border: 1px solid #f1c3c1; }
+.badge-exam { background: #f1e9fb; color: var(--purple); border: 1px solid #dcc7f2; }
+
+.exo-titre-txt {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+}
+.chevron {
+  color: var(--text-dim);
+  font-size: 13px;
+  flex-shrink: 0;
+  transition: transform .2s;
+}
+details[open] .chevron { transform: rotate(180deg); }
+
+/* ── CORPS DE L'EXERCICE ─────────────────────────────────── */
+.exo-body {
+  padding: 0 18px 20px;
+  border-top: 1px solid var(--border);
+}
+
+.contexte {
+  background: #eef5fc;
+  border-left: 3px solid var(--blue);
+  border-radius: 0 6px 6px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.75;
+}
+.contexte strong { color: #12141c; }
+
+.tableau-donnees {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+.tableau-donnees th {
+  background: #eef1f8;
+  color: var(--text-dim);
+  font-family: var(--font-head);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+.tableau-donnees td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+.tableau-donnees tr:last-child td { border-bottom: none; }
+.tableau-donnees td.num { font-weight: 600; color: #12141c; }
+.tableau-donnees tr.total-row td {
+  background: #eef1f8;
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.questions { margin: 18px 0 0; }
+.question {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  align-items: flex-start;
+}
+.question .q-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: var(--accent);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 11px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.question p { font-size: 14px; margin: 0; }
+
+/* ── ORDRE DE GRANDEUR ───────────────────────────────────── */
+.ordre-grandeur {
+  background: #fdf6e3;
+  border: 1px solid #f0dfa0;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: #8a6100;
+  margin: 12px 0 0;
+}
+.ordre-grandeur::before { content: "💡 "; }
+
+/* ── BOUTON CORRECTION ───────────────────────────────────── */
+.btn-corrige {
+  background: none;
+  border: 1px solid var(--border-hi);
+  border-radius: 6px;
+  color: var(--text-dim);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 16px;
+  margin-top: 18px;
+  transition: all .15s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.btn-corrige:hover { border-color: var(--green); color: var(--green); }
+
+/* ── CORRECTION ──────────────────────────────────────────── */
+.correction {
+  display: none;
+  background: #eafbf0;
+  border: 1px solid #bfe8cc;
+  border-radius: 6px;
+  padding: 16px 18px;
+  margin-top: 14px;
+  font-size: 13.5px;
+  line-height: 1.8;
+}
+.correction.visible { display: block; }
+.correction .corr-etape {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d3ecd9;
+}
+.correction .corr-etape:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.correction .c-num {
+  display: inline-block;
+  background: var(--green);
+  color: #ffffff;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 10px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 18px;
+  margin-right: 6px;
+}
+.correction code {
+  display: block;
+  background: #dcf4e3;
+  border-radius: 4px;
+  padding: 6px 12px;
+  color: #146c34;
+  font-family: 'Courier New', monospace;
+  font-size: 13px;
+  margin: 5px 0;
+}
+.correction .res {
+  font-family: var(--font-head);
+  font-weight: 700;
+  color: #12141c;
+}
+.correction .conclu {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #2f7d4c;
+  font-style: italic;
+}
+.correction .tableau-corr {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  margin: 8px 0;
+}
+.correction .tableau-corr th {
+  background: #dcf4e3;
+  color: var(--text-dim);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  text-align: left;
+}
+.correction .tableau-corr td {
+  padding: 6px 10px;
+  border-bottom: 1px solid #d3ecd9;
+  color: #2f6b42;
+}
+.correction .tableau-corr td.val {
+  font-weight: 700;
+  color: var(--green);
+}
+.correction .tableau-corr tr.t-total td {
+  background: #dcf4e3;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* ── SÉPARATEUR ──────────────────────────────────────────── */
+hr.section-sep {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 54px 0 0;
+}
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 20px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 12px;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .exo-titre-txt { font-size: 13px; }
+  .contexte { font-size: 13px; }
+  .tableau-donnees { font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="site-header">
+  <div class="kicker">🛒 Dossier 3 – Conseiller et vendre – Bac pro MCV</div>
+  <h1>Caractériser<br>les produits</h1>
+  <p class="sub">22 exercices progressifs – aucun calcul – de l'identification simple à la mise en situation vendeur complète</p>
+  <nav class="nav-anchors">
+    <a href="#biens-services">🏷️ Biens et services (4 ex.)</a>
+    <a href="#cycle-vie">📈 Cycle de vie (3 ex.)</a>
+    <a href="#assortiment">🗂️ Assortiment (4 ex.)</a>
+    <a href="#packaging">📦 Emballage et qualité (4 ex.)</a>
+    <a href="#marques">🔖 Marques et MDD (4 ex.)</a>
+    <a href="#complet">🏁 Mises en situation complètes (3 ex.)</a>
+  </nav>
+</header>
+
+<main>
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOC 1 – DISTINGUER LES PRODUITS ET SERVICES
+══════════════════════════════════════════════════════════ -->
+<div class="bloc-titre" id="biens-services">
+  <span class="icone">🏷️</span>
+  <h2>Bloc 1 – Distinguer les produits et services</h2>
+</div>
+
+<div class="memo">
+  <div class="memo-titre">🗂 mémo à connaître</div>
+  <code>Bien = produit matériel (stockable, on peut le toucher)</code>
+  <code>Service = prestation immatérielle (non stockable)</code>
+  <p class="note">Un bien <strong>banal</strong> : achat fréquent, faible valeur (ex. : dentifrice). Un bien <strong>anomal</strong> : achat exceptionnel et réfléchi, prix élevé (ex. : véhicule).<br>Un bien <strong>durable</strong> n'est pas détruit à l'usage (ex. : smartphone). Un bien <strong>non durable</strong> (ou périssable) est détruit à la consommation (ex. : yaourt).<br>Un service <strong>de base</strong> est payé par le client. Un service <strong>secondaire</strong> complète l'offre et n'est pas facturé (ex. : parking du magasin).</p>
+</div>
+
+<!-- EX 1 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 1</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Bien ou service ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous travaillez au <em>Comptoir de la maison</em>, un magasin d'équipement pour la maison. Un client s'adresse à vous pour les éléments suivants :<br><br>
+      a. Un aspirateur robot<br>
+      b. La livraison à domicile de l'aspirateur<br>
+      c. Un jeu de serviettes de toilette<br>
+      d. Le service après-vente qui répare les appareils en panne
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Pour chaque élément (a, b, c, d), indiquez s'il s'agit d'un bien ou d'un service.</p>
+      </div>
+    </div>
+    <div class="ordre-grandeur"><strong>Piste :</strong> demandez-vous « est-ce que je peux le toucher et le stocker en rayon ? ».</div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">a. bien &nbsp;|&nbsp; b. service &nbsp;|&nbsp; c. bien &nbsp;|&nbsp; d. service</p>
+        <p class="conclu">L'aspirateur et les serviettes sont des produits matériels que l'on stocke en rayon. La livraison et le SAV sont des prestations immatérielles, impossibles à stocker.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 2 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 2</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Bien banal ou bien anomal ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Dans votre magasin, vous croisez ces quatre produits en rayon :<br><br>
+      a. Un pot de yaourts<br>
+      b. Une chaudière à gaz<br>
+      c. Un flacon de shampoing<br>
+      d. Un canapé d'angle
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Classez chaque produit en bien banal ou bien anomal.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Justifiez votre classement pour le produit b. à l'aide de deux critères du cours.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">a. banal &nbsp;|&nbsp; b. anomal &nbsp;|&nbsp; c. banal &nbsp;|&nbsp; d. anomal</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="conclu">Une chaudière est un bien anomal : son achat est exceptionnel et réfléchi, et son prix est élevé. Ce sont les deux critères qui définissent un bien anomal.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 3 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 3</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Durable ou non durable ? Rayon frais contre rayon électroménager</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous faites l'inventaire de deux rayons du magasin :<br><br>
+      <strong>Rayon 1 :</strong> steaks hachés, fromage blanc, pain de mie<br>
+      <strong>Rayon 2 :</strong> perceuse sans fil, lave-linge, tondeuse à gazon
+    </div>
+    <table class="tableau-donnees">
+      <tr><th>Produit</th><th>Détruit dès la première utilisation ?</th><th>Type de bien</th></tr>
+      <tr><td>Steak haché</td><td>oui</td><td class="num">à compléter</td></tr>
+      <tr><td>Perceuse sans fil</td><td>non, usure longue</td><td class="num">à compléter</td></tr>
+    </table>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Complétez la dernière colonne du tableau.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Le rayon 2 est-il composé de biens durables ou non durables dans son ensemble ? Justifiez en une phrase.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Steak haché : bien non durable (périssable). Perceuse sans fil : bien durable.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="conclu">Le rayon 2 est composé de biens durables : la perceuse, le lave-linge et la tondeuse ne sont pas détruits par leur utilisation, leur usure se fait sur le long terme.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 4 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 4</span>
+    <span class="badge badge-3">★ expert</span>
+    <span class="exo-titre-txt">Service de base ou service secondaire ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Un client hésite devant le rayon électroménager de votre magasin et vous pose plusieurs questions :<br><br>
+      « Le parking du magasin, il est payant ? » ; « La livraison de mon réfrigérateur, c'est en option payante ? » ; « Et l'extension de garantie à cinq ans, elle coûte combien ? » ; « Vous faites le retrait en magasin gratuitement si je commande en ligne ? »
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Pour chacune des trois prestations évoquées (parking, livraison, extension de garantie), indiquez si elle correspond à un service de base ou à un service secondaire.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Un client vous dit : « de toute façon, un service, ça se voit pas, donc ça compte pas dans la vente ». Rédigez une réponse courte qui corrige cette idée reçue.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Parking gratuit : service secondaire (non payé, vient en complément).<br>Livraison payante : service secondaire payant, mais pas le service de base ici puisque le produit acheté est le réfrigérateur.<br>Extension de garantie payante : service secondaire, proposé en complément de la vente du bien.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="conclu">« Un service est immatériel, mais il a de la valeur : il rassure, facilite l'achat ou complète le produit. La garantie ou la livraison font partie de l'expérience d'achat, même si on ne peut ni les toucher ni les stocker. »</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<hr class="section-sep">
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOC 2 – LE CYCLE DE VIE DU PRODUIT
+══════════════════════════════════════════════════════════ -->
+<div class="bloc-titre" id="cycle-vie">
+  <span class="icone">📈</span>
+  <h2>Bloc 2 – Situer le produit dans son cycle de vie</h2>
+</div>
+
+<div class="memo">
+  <div class="memo-titre">🗂 mémo à connaître</div>
+  <code>Lancement → Croissance → Maturité → Déclin</code>
+  <p class="note">Lancement : le produit arrive sur le marché. Croissance : les ventes augmentent, peu de concurrence. Maturité : les ventes évoluent peu, marché concurrentiel. Déclin : des produits de substitution apparaissent, les ventes baissent.<br>Selon la phase, le point de vente <strong>agrandit</strong>, <strong>maintient</strong> ou <strong>réduit</strong> la place du produit en rayon.</p>
+</div>
+
+<!-- EX 5 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 5</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Remettre les quatre phases dans l'ordre</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Voici les quatre phases du cycle de vie d'un produit, dans le désordre : <strong>déclin</strong> – <strong>lancement</strong> – <strong>maturité</strong> – <strong>croissance</strong>.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Remettez ces quatre phases dans l'ordre chronologique correct.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Lancement → croissance → maturité → déclin.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 6 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 6</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Associer chaque produit à sa phase</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous observez quatre situations dans votre rayon multimédia et textile :<br><br>
+      a. Un nouveau casque à réduction de bruit vient d'arriver, aucun concurrent direct n'est encore en rayon.<br>
+      b. Le jean brut « coupe droite » se vend très bien depuis deux ans, plusieurs marques concurrentes sont désormais en rayon.<br>
+      c. Le lecteur DVD est presque introuvable dans le magasin, remplacé par les box de streaming.<br>
+      d. La multiprise universelle se vend de façon stable depuis des années, sans évolution notable.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Associez chaque produit (a, b, c, d) à sa phase du cycle de vie.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">a. lancement &nbsp;|&nbsp; b. croissance &nbsp;|&nbsp; c. déclin &nbsp;|&nbsp; d. maturité</p>
+        <p class="conclu">a. produit récent sans concurrence ; b. ventes en hausse et concurrence qui arrive ; c. produit de substitution disponible et ventes en baisse ; d. ventes stables, marché installé.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 7 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 7</span>
+    <span class="badge badge-3">★ expert</span>
+    <span class="exo-titre-txt">Décision de linéaire en tant que chef de rayon</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous êtes chef de rayon textile. Le lecteur DVD (cf. exercice 6, produit c.) occupe encore deux mètres de linéaire dans votre rayon multimédia, alors que les ventes ont chuté de moitié en un an.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>À quelle phase du cycle de vie ce produit correspond-il ?</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Quelle décision prenez-vous concernant la place de ce produit en rayon ? Utilisez le vocabulaire du cours.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">3</span>
+        <p>Que ferez-vous à l'inverse pour le casque à réduction de bruit qui vient d'être lancé ?</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Phase de déclin.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="res">Il faut réduire la place du lecteur DVD en linéaire, pour libérer de l'espace au profit de produits plus porteurs.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">3</span>
+        <p class="conclu">Pour un produit en lancement, on agrandit progressivement sa place en rayon si les premières ventes sont encourageantes, afin d'accompagner sa croissance.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<hr class="section-sep">
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOC 3 – CARACTÉRISER L'ASSORTIMENT
+══════════════════════════════════════════════════════════ -->
+<div class="bloc-titre" id="assortiment">
+  <span class="icone">🗂️</span>
+  <h2>Bloc 3 – Caractériser l'assortiment du point de vente</h2>
+</div>
+
+<div class="memo">
+  <div class="memo-titre">🗂 mémo à connaître</div>
+  <code>Nomenclature IFLS : 7 groupes de familles</code>
+  <p class="note">Épicerie, boissons, produits frais, DHP (droguerie, hygiène, parfumerie), équipement de la maison, bien-être de la personne, habillement.<br><strong>Ampleur</strong> : nombre de groupes de familles (ample si les 7 groupes, restreint si 2 seulement).<br><strong>Largeur</strong> : nombre de familles dans un groupe (large si la plupart des familles, étroit si 2 familles).<br><strong>Profondeur</strong> : nombre de références dans une famille (profond si toutes les références, superficiel si 2 ou 3 références).</p>
+</div>
+
+<!-- EX 8 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 8</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Compléter la nomenclature IFLS</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      La nomenclature IFLS classe les produits en sept groupes de familles. Il en manque trois dans la liste suivante :<br><br>
+      épicerie – boissons – ……………… – DHP – ……………… – bien-être de la personne – ………………
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Complétez les trois groupes manquants.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Produits frais – équipement de la maison – habillement.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 9 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 9</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Ample ou restreint ? Le cas d'un magasin bio</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      <em>Nature &amp; Vrac</em> est une petite épicerie bio de quartier. Elle ne propose que des produits d'épicerie et des produits frais.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>L'assortiment de <em>Nature &amp; Vrac</em> est-il ample ou restreint ? Justifiez avec la définition du cours.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">L'assortiment est restreint.</p>
+        <p class="conclu">Il ne compte que 2 des 7 groupes de familles IFLS (épicerie et produits frais), ce qui correspond exactement à la définition d'un assortiment restreint.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 10 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 10</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Large ou étroit ? Le rayon sport de « Sport Avenue »</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Dans le groupe « habillement », le magasin <em>Sport Avenue</em> propose de nombreuses familles de produits : chaussures de sport, vêtements techniques, sacs de sport, accessoires de sport, sous-vêtements techniques. Presque toutes les familles possibles de ce groupe sont représentées.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>La largeur de l'assortiment du groupe « habillement » chez <em>Sport Avenue</em> est-elle large ou étroite ? Justifiez.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Rappelez la différence entre largeur et ampleur, avec vos propres mots.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">La largeur est large, car le magasin regroupe la plupart des familles du groupe « habillement ».</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="conclu">L'ampleur compte le nombre de groupes de familles présents dans tout le magasin. La largeur, elle, compte le nombre de familles à l'intérieur d'un seul groupe.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 11 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 11</span>
+    <span class="badge badge-exam">🏁 cas complet</span>
+    <span class="exo-titre-txt">Diagnostic complet de l'assortiment de « Sport Avenue »</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Votre responsable vous demande de présenter l'assortiment du magasin <em>Sport Avenue</em> lors d'une réunion d'équipe :<br><br>
+      • le magasin est présent dans 3 des 7 groupes de familles IFLS (habillement, équipement de la maison, bien-être de la personne) ;<br>
+      • dans le groupe « habillement », presque toutes les familles sont représentées ;<br>
+      • dans la famille « chaussures de running », seules 3 références sont proposées, contre des dizaines chez un magasin spécialisé.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Qualifiez l'ampleur de l'assortiment de <em>Sport Avenue</em>.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Qualifiez la largeur de l'assortiment dans le groupe « habillement ».</p>
+      </div>
+      <div class="question">
+        <span class="q-num">3</span>
+        <p>Qualifiez la profondeur de la famille « chaussures de running ».</p>
+      </div>
+      <div class="question">
+        <span class="q-num">4</span>
+        <p>Rédigez une phrase de synthèse pour votre responsable, qui résume les trois caractéristiques de l'assortiment.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Ampleur restreinte : seuls 3 groupes de familles sur 7 sont présents.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="res">Largeur large : la plupart des familles du groupe « habillement » sont représentées.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">3</span>
+        <p class="res">Profondeur superficielle : seulement 3 références sont proposées dans cette famille.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">4</span>
+        <p class="conclu">« Sport Avenue » propose un assortiment restreint en ampleur, mais large et spécialisé dans l'habillement, avec toutefois une profondeur superficielle sur les chaussures de running, moins développée que chez un magasin spécialisé.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<hr class="section-sep">
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOC 4 – EMBALLAGE, CONDITIONNEMENT ET SIGNES DE QUALITÉ
+══════════════════════════════════════════════════════════ -->
+<div class="bloc-titre" id="packaging">
+  <span class="icone">📦</span>
+  <h2>Bloc 4 – Emballage, conditionnement et signes de qualité</h2>
+</div>
+
+<div class="memo">
+  <div class="memo-titre">🗂 mémo à connaître</div>
+  <code>Conditionnement : au contact direct du produit, il le protège</code>
+  <code>Emballage : ensemble des éléments vendus avec le produit</code>
+  <code>Packaging : aspect extérieur du produit (design, forme)</code>
+  <p class="note">Les signes de qualité informent sur le savoir-faire, l'origine, le respect de l'environnement, le développement durable ou les normes de qualité du produit.</p>
+</div>
+
+<!-- EX 12 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 12</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Associer chaque terme à sa définition</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Trois termes : <strong>conditionnement</strong>, <strong>emballage</strong>, <strong>packaging</strong>.<br>Trois définitions :<br>
+      1. Assure la présentation, la conservation ou le transport du produit.<br>
+      2. Est au contact direct du produit et le protège.<br>
+      3. Désigne l'aspect extérieur du produit (design, forme) et le met en valeur.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Associez chaque terme à sa définition (1, 2 ou 3).</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Conditionnement → 2 &nbsp;|&nbsp; emballage → 1 &nbsp;|&nbsp; packaging → 3</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 13 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 13</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Le cas d'un flacon de parfum</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous rangez un flacon de parfum au rayon parfumerie. Trois éléments composent le produit fini vendu au client : le flacon en verre qui contient le parfum, la boîte en carton qui l'entoure, et la forme originale du flacon dessinée par la marque.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Quel élément correspond au conditionnement ?</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Quel élément correspond à l'emballage ?</p>
+      </div>
+      <div class="question">
+        <span class="q-num">3</span>
+        <p>Quel élément correspond au packaging ?</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Le flacon en verre : il est au contact direct du parfum et le protège.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="res">La boîte en carton : elle assure la présentation et le transport, sans toucher directement le parfum.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">3</span>
+        <p class="res">La forme originale du flacon : c'est l'aspect extérieur qui met en valeur le produit.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 14 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 14</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Que signale un signe de qualité ?</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Un fromage AOP (appellation d'origine protégée) est en rayon dans votre magasin, à côté d'un fromage sans label, moins cher.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Parmi ces propositions, cochez toutes celles qu'un signe de qualité comme l'AOP peut informer : le savoir-faire ; l'emplacement du magasin ; l'origine du produit ; le prix de vente conseillé ; le respect de l'environnement ; les normes de qualité.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Bonnes réponses : le savoir-faire ; l'origine du produit ; le respect de l'environnement ; les normes de qualité.</p>
+        <p class="conclu">L'emplacement du magasin et le prix de vente conseillé ne font pas partie des informations apportées par un signe de qualité.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 15 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 15</span>
+    <span class="badge badge-3">★ expert</span>
+    <span class="exo-titre-txt">Justifier un écart de prix face au client</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Un client, devant le rayon fromage, vous demande : « pourquoi ce fromage AOP est-il plus cher que celui d'à côté, sans label ? »
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Rédigez une réponse commerciale d'une à deux phrases, en mobilisant la notion de signe de qualité et au moins deux des informations qu'il apporte.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="conclu">« Ce fromage porte un signe de qualité, l'AOP, qui garantit un savoir-faire précis et une origine géographique contrôlée. Ce niveau d'exigence explique un prix plus élevé que celui d'un fromage sans label. »</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<hr class="section-sep">
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOC 5 – LES MARQUES ET LES MDD
+══════════════════════════════════════════════════════════ -->
+<div class="bloc-titre" id="marques">
+  <span class="icone">🔖</span>
+  <h2>Bloc 5 – Identifier les marques</h2>
+</div>
+
+<div class="memo">
+  <div class="memo-titre">🗂 mémo à connaître</div>
+  <code>Marque = signe qui distingue le produit de la concurrence</code>
+  <code>MDD = marque de distributeur, propre à l'enseigne</code>
+  <p class="note">MDD <strong>premier prix</strong> : prix réduit de moitié par rapport aux marques nationales.<br>MDD <strong>cœur de gamme</strong> : prix réduit de 20 à 30 % par rapport aux marques nationales.<br>MDD <strong>de gamme ou thématique</strong> : vise une cible porteuse.</p>
+</div>
+
+<!-- EX 16 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 16</span>
+    <span class="badge badge-1">⬆ décollage</span>
+    <span class="exo-titre-txt">Définir la marque</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Un nouveau collègue vous demande : « c'est quoi exactement une marque, pour un produit ? »
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Rédigez une définition en une phrase, avec un exemple de produit de votre rayon.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="conclu">« Une marque est un signe (nom, mot, expression ou symbole) qui permet au consommateur de distinguer le produit d'une entreprise de ceux de la concurrence. Par exemple, sur un paquet de biscuits, le nom du fabricant imprimé sur l'emballage est la marque. »</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 17 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 17</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Classer trois MDD</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Votre enseigne propose trois lignes de marque de distributeur :<br><br>
+      a. La ligne « Essentiel » : prix environ deux fois moins élevé que les marques nationales équivalentes.<br>
+      b. La ligne « Sélection » : prix légèrement inférieur aux marques nationales, autour de 20 à 30 % de moins.<br>
+      c. La ligne « Bio &amp; Nature » : produits ciblant une clientèle sensible à l'environnement, disposée à payer un peu plus.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Associez chaque ligne (a, b, c) à son type de MDD : premier prix, cœur de gamme, ou de gamme/thématique.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">a. MDD premier prix &nbsp;|&nbsp; b. MDD cœur de gamme &nbsp;|&nbsp; c. MDD de gamme ou thématique</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 18 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 18</span>
+    <span class="badge badge-2">➤ entraînement</span>
+    <span class="exo-titre-txt">Vrai ou faux sur les MDD</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Indiquez si chaque affirmation est vraie ou fausse, puis corrigez celles qui sont fausses :<br><br>
+      a. Une MDD est une marque propre à l'enseigne de distribution.<br>
+      b. Une MDD premier prix vise à proposer des produits haut de gamme.<br>
+      c. Une MDD de gamme ou thématique cible une clientèle particulière.<br>
+      d. Une marque nationale est toujours moins chère qu'une MDD cœur de gamme.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Répondez vrai ou faux pour chaque affirmation, en corrigeant les affirmations fausses.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">a. vrai.<br>b. faux : une MDD premier prix vise un prix réduit de moitié par rapport aux marques nationales, pas le haut de gamme.<br>c. vrai.<br>d. faux : c'est l'inverse, la MDD cœur de gamme est moins chère de 20 à 30 % que la marque nationale.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 19 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 19</span>
+    <span class="badge badge-3">★ expert</span>
+    <span class="exo-titre-txt">Argumenter en faveur d'une MDD sans dénigrer la marque nationale</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Un client hésite entre une marque nationale de café et la MDD « Sélection » (cœur de gamme) de votre enseigne, moins chère.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Rédigez trois arguments commerciaux courts pour orienter le client vers la MDD, sans dénigrer la marque nationale.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="conclu">1. « Cette MDD cœur de gamme offre une qualité proche de la marque nationale, pour un prix inférieur de 20 à 30 %. »<br>2. « C'est une exclusivité de notre enseigne, que vous ne trouverez pas ailleurs. »<br>3. « Vous pouvez la tester sans risque : si elle ne vous convient pas, vous reviendrez vers la marque nationale la prochaine fois. »</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<hr class="section-sep">
+
+<!-- ══════════════════════════════════════════════════════════
+     BLOC 6 – MISES EN SITUATION COMPLÈTES
+══════════════════════════════════════════════════════════ -->
+<div class="bloc-titre" id="complet">
+  <span class="icone">🏁</span>
+  <h2>Bloc 6 – Mises en situation complètes</h2>
+</div>
+
+<div class="memo">
+  <div class="memo-titre">🗂 mémo à connaître</div>
+  <p class="note">Ces cas mobilisent l'ensemble des notions du dossier : bien ou service, banal ou anomal, durable ou non durable, conditionnement, emballage, packaging, signe de qualité, cycle de vie, assortiment, marque et MDD.</p>
+</div>
+
+<!-- EX 20 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 20</span>
+    <span class="badge badge-exam">🏁 cas complet</span>
+    <span class="exo-titre-txt">Fiche produit complète – gel douche bio</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous rangez le rayon DHP de votre magasin. Un gel douche bio y figure : marque nationale reconnue, flacon en plastique recyclé (avec le produit à l'intérieur), boîte carton pour le transport, design épuré et coloré, label « cosmétique biologique » apposé sur l'emballage. Ce produit vient d'être lancé le mois dernier.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>S'agit-il d'un bien ou d'un service ? Est-il banal ou anomal ? Durable ou non durable ?</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Identifiez le conditionnement, l'emballage et le packaging de ce produit.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">3</span>
+        <p>Que signale le label « cosmétique biologique » présent sur l'emballage ?</p>
+      </div>
+      <div class="question">
+        <span class="q-num">4</span>
+        <p>À quelle phase du cycle de vie ce produit se situe-t-il ?</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Bien matériel ; banal (achat fréquent, faible valeur) ; non durable (détruit à l'usage).</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="res">Conditionnement : le flacon en plastique recyclé, au contact direct du gel douche.<br>Emballage : la boîte en carton, pour la présentation et le transport.<br>Packaging : le design épuré et coloré du flacon.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">3</span>
+        <p class="res">Ce signe de qualité informe sur le respect de l'environnement et sur le savoir-faire lié à la fabrication biologique.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">4</span>
+        <p class="conclu">Le produit est en phase de lancement, puisqu'il vient d'être mis sur le marché le mois dernier.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 21 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 21</span>
+    <span class="badge badge-exam">🏁 cas complet</span>
+    <span class="exo-titre-txt">Conseil client au magasin de bricolage « Bâti Plus »</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous travaillez au magasin de bricolage <em>Bâti Plus</em>. L'assortiment couvre 4 groupes de familles IFLS sur 7 (équipement de la maison, bien-être de la personne, DHP, habillement). Un client cherche une perceuse. Vous lui proposez deux options : une marque nationale à prix plein, ou la MDD « Bâti Plus Pro » (cœur de gamme), 25 % moins chère. Il vous demande aussi si le service de montage à domicile est inclus.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>L'assortiment de <em>Bâti Plus</em> est-il ample ou restreint ? Justifiez.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>La perceuse est-elle un bien banal ou anomal ? Durable ou non durable ?</p>
+      </div>
+      <div class="question">
+        <span class="q-num">3</span>
+        <p>Rédigez un argument pour orienter le client vers la MDD « Bâti Plus Pro ».</p>
+      </div>
+      <div class="question">
+        <span class="q-num">4</span>
+        <p>Le service de montage à domicile, payé en supplément, est-il un service de base ou secondaire ?</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Assortiment restreint : seulement 4 groupes de familles sur 7 sont représentés.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="res">Bien anomal (achat exceptionnel, prix élevé) et bien durable (n'est pas détruit par l'usage).</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">3</span>
+        <p class="conclu">« La MDD Bâti Plus Pro cœur de gamme offre des performances proches de la marque nationale, pour un prix inférieur d'environ 25 %. »</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">4</span>
+        <p class="res">Service secondaire : il vient en complément de la vente de la perceuse et n'est pas inclus dans le prix de base.</p>
+      </div>
+    </div>
+  </div>
+</details>
+
+<!-- EX 22 -->
+<details class="exo-card">
+  <summary class="exo-header">
+    <span class="exo-num">Ex. 22</span>
+    <span class="badge badge-exam">🏁 sujet complet</span>
+    <span class="exo-titre-txt">Note de synthèse au responsable de rayon</span>
+    <span class="chevron">▼</span>
+  </summary>
+  <div class="exo-body">
+    <div class="contexte">
+      Vous êtes vendeur ou vendeuse chez <em>Techno Cité</em>, magasin d'équipement multimédia. Votre responsable, M. Lefort, vous demande une note sur un nouveau modèle d'enceinte connectée que le magasin vient de référencer :<br><br>
+      • marque nationale reconnue, un concurrent direct vient de sortir un modèle équivalent ;<br>
+      • conditionnement : mousse de protection au contact de l'enceinte ; emballage : boîte carton illustrée ; packaging : forme ronde et coloris tendance ;<br>
+      • label « éco-conçu » apposé sur l'emballage ;<br>
+      • le rayon multimédia ne compte que 2 familles de produits (enceintes et casques), sur les nombreuses familles possibles du groupe équipement de la maison.
+    </div>
+    <div class="questions">
+      <div class="question">
+        <span class="q-num">1</span>
+        <p>Caractérisez le produit : bien ou service, banal ou anomal, durable ou non durable.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">2</span>
+        <p>Identifiez le conditionnement, l'emballage et le packaging.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">3</span>
+        <p>À quelle phase du cycle de vie ce produit se situe-t-il ? Justifiez avec un élément du contexte.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">4</span>
+        <p>Qualifiez la largeur de l'assortiment du rayon multimédia.</p>
+      </div>
+      <div class="question">
+        <span class="q-num">5</span>
+        <p>Rédigez la note de synthèse complète à destination de M. Lefort, en mobilisant l'ensemble de vos réponses.</p>
+      </div>
+    </div>
+    <button class="btn-corrige" onclick="toggleCorr(this)">✅ Voir la correction complète</button>
+    <div class="correction">
+      <div class="corr-etape">
+        <span class="c-num">1</span>
+        <p class="res">Bien matériel ; anomal (achat réfléchi, prix relativement élevé) ; durable (usure sur le long terme).</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">2</span>
+        <p class="res">Conditionnement : la mousse de protection. Emballage : la boîte carton illustrée. Packaging : la forme ronde et le coloris tendance.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">3</span>
+        <p class="res">Phase de lancement ou de tout début de croissance : le produit vient d'être référencé et un concurrent arrive tout juste avec un modèle équivalent.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">4</span>
+        <p class="res">Largeur étroite : seulement 2 familles sont proposées dans le groupe équipement de la maison.</p>
+      </div>
+      <div class="corr-etape">
+        <span class="c-num">5</span>
+        <p class="conclu" style="font-style:italic;color:#1f6b3a;font-size:13px;line-height:1.9;border:1px solid #bfe8cc;padding:14px;border-radius:5px;display:block;">
+          <strong>NOTE DE SERVICE</strong><br><br>
+          <strong>À :</strong> M. Lefort, responsable de rayon<br>
+          <strong>De :</strong> [Prénom Nom], vendeur ou vendeuse<br>
+          <strong>Objet :</strong> présentation du nouveau modèle d'enceinte connectée<br><br>
+          Ce produit est un bien anomal et durable, à prix relativement élevé et achat réfléchi. Son conditionnement (mousse de protection) et son emballage (boîte carton illustrée) assurent sa protection et sa présentation, tandis que son packaging (forme ronde, coloris tendance) le met en valeur en rayon. Le label « éco-conçu » renforce son positionnement auprès d'une clientèle sensible à l'environnement.<br><br>
+          Le produit se situe en phase de lancement, un concurrent arrivant tout juste avec un modèle équivalent. Le rayon multimédia présentant une largeur étroite (2 familles seulement), je recommande de mettre ce produit en avant afin de dynamiser l'offre et d'anticiper la concurrence.
+        </p>
+      </div>
+    </div>
+  </div>
+</details>
+
+</main>
+
+<footer class="site-footer">
+  Bac pro MCV – Dossier 3 « Conseiller et vendre » &nbsp;|&nbsp; 22 exercices progressifs – Caractériser les produits – aucun calcul
+</footer>
+
+<script>
+function toggleCorr(btn) {
+  const corr = btn.nextElementSibling;
+  const isVisible = corr.classList.contains('visible');
+  corr.classList.toggle('visible', !isVisible);
+  btn.textContent = isVisible ? '✅ Voir la correction' : '🔒 Masquer la correction';
+}
+</script>
+
+</body>
+</html>
